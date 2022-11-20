@@ -1,0 +1,39 @@
+{{# partial "contenido" }}
+
+<div class="d-flex flex-column flex-shrink-0 p-5 text-white">
+    <div class="jumbotron p-5 bg-black">
+        <h1>Reporte HC</h1>
+        {{# if mensaje}}
+        <div class="alert alert-info" role="alert">
+            {{mensaje}}
+        </div>
+        {{/ if}}
+        <table class="table text-white">
+            <thead>
+                <tr>
+                    <th scope="col">Formulario de selección:</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <form action="/hcs" method="post">
+                         <input type="hidden" name="tipo" value="{{tipo}}"/>
+                            <p>Complete los siguientes datos:</p>
+                            <br>
+                            <label for="vReporte">Zona:</label>
+                            <select name="vReporte">
+                                {{#each zonas}}
+                                <option value="{{id}}">{{nombreProvinciaLocalidad}}</option>
+                                {{/each}}
+                            </select><br>
+                            <br><br><input class="btn btn-primary" type="submit" value="Ver Reporte">
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{{/partial}}
+{{> layout3.html.hbs }}

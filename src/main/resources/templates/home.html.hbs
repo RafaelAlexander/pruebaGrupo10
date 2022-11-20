@@ -1,0 +1,18 @@
+{{# partial "contenido" }}
+    <div class="d-flex flex-column flex-shrink-0 p-5 text-white">
+        {{# if mensaje}}
+        <div class="alert alert-info" role="alert">
+      	    {{mensaje}}
+        </div>
+        {{/if}}
+        <div class="jumbotron p-5 bg-black">
+        <h1>Sobre Nosotros: </h1>
+        <br><h4>¿Quienes somos?</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, libero amet qui iure assumenda illo omnis sequi id a eos similique repellat molestias! Nostrum animi perspiciatis consequuntur necessitatibus magnam laboriosam?</p>
+        <br><h4>¿Que podes hacer en esta Web?</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Officia dolor similique minima vitae molestiae necessitatibus magni error excepturi eligendi modi in voluptates unde id, recusandae laudantium, incidunt, dignissimos a doloribus?</p>
+        </div>
+    </div>
+{{/partial}}
+{{> layout3.html.hbs }}

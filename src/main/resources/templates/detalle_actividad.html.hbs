@@ -1,0 +1,36 @@
+{{# partial "contenido" }}
+    <div class="d-flex flex-column flex-shrink-0 p-5 text-white">
+        <div class="jumbotron p-5 bg-black">
+            <h1>Datos de Actividad</h1>
+            <p> A continuacion, se encuentran los datos de la actividad:</p>
+            <table class="table text-white">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Tipo de Consumo</th>
+                    <th scope="col">Consumo</th>
+                    <th scope="col">Unidad</th>
+                    <th scope="col">Actividad</th>
+                    <th scope="col">Mes</th>
+                    <th scope="col">Anual</th>
+                    <th scope="col">Periodicidad</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">{{actividad.id}}</th>
+                        <td>{{actividad.tipoDeConsumo.nombre}}</td>
+                        <td>{{actividad.consumo}}</td>
+                        <td>{{actividad.tipoDeConsumo.unidad}}</td>
+                        <td>{{actividad.tipoDeConsumo.actividad}}</td>
+                        <td>{{actividad.mes.value}}</td>
+                        <td>{{actividad.anual}}</td>
+                        <td>{{actividad.periodicidad}}</td>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{{/partial}}
+{{> layout3.html.hbs }}

@@ -1,0 +1,40 @@
+{{# partial "contenido" }}
+<div class="d-flex flex-column flex-shrink-0 p-5 text-white">
+	<div class="jumbotron p-5 bg-black">
+		<h1>Calculadora HC</h1>
+		{{# if mensaje}}
+		<div class="alert alert-info" role="alert">
+  			{{mensaje}}
+		</div>
+		{{/ if}}
+		<table class="table text-white">
+			<thead>
+				<tr>
+					<th scope="col">Calculo</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<form action="/hc" method="post">
+							<p>Complete los siguientes datos:</p>
+							<br>
+							<label for="anio">Año:</label>
+							<input type="number" name="anio" value="2012">
+							<label for="mes">Mes:</label>
+							<select name="mes">
+								{{#each meses}}
+								<option value="{{this}}">{{this}}</option>
+								{{/each}}
+								<option value="N/A">N/A</option>
+							</select><br>
+							<br><br><input class="btn btn-primary" type="submit" value="submit">
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+{{/partial}}
+{{> layout3.html.hbs }}

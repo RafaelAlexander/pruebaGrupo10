@@ -1,0 +1,70 @@
+{{# partial "contenido" }}
+
+<div class="d-flex flex-column flex-shrink-0 p-5 text-white">
+    <div class="jumbotron p-5 bg-black">
+        <h1>Reportes</h1>
+        {{# if mensaje}}
+        <div class="alert alert-info" role="alert">
+            {{mensaje}}
+        </div>
+        {{/ if}}
+        <table class="table text-white">
+            <thead>
+                <tr>
+                    <th scope="col">Seleccione reporte: </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col text-center">
+                                <form method="post" action="/reporte">
+                                    <input type="hidden" name="tipo" value="1" />
+
+                                    <button class="btn btn-primary m-4 btn-block" type="submit">TOTAL X SECTOR
+                                        TERRITORIAL</button>
+                                </form>
+                                <form method="post" action="/reporte">
+                                    <input type="hidden" name="tipo" value="2" />
+                                    <button class="btn btn-primary m-4 btn-block" type="submit">TOTAL X TIPO DE
+                                        ORG</button>
+                                </form>
+                                <form method="post" action="/reporte">
+                                     <input type="hidden" name="tipo" value="3" />
+                                    <button class="btn btn-primary m-4 btn-block" type="submit">COMP. DE SECTOR
+                                        TERRITORIAL</button>
+
+                                </form>
+                                <form method="post" action="/reporte">
+                                    <input type="hidden" name="tipo" value="4" />
+
+                                    <button class="btn btn-primary m-4 btn-block" type="submit">COMP. DE UNA
+                                        ORGANIZACION</button>
+
+                                </form>
+                                <form method="post" action="/reporte">
+                                    <input type="hidden" name="tipo" value="5" />
+
+                                    <button class="btn btn-primary m-4 btn-block" type="submit">EV.DE SECTOR
+                                        TERRITORIAL</button>
+
+
+                                </form>
+                                <form method="post" action="/reporte">
+                                    <input type="hidden" name="tipo" value="6" />
+
+                                    <button class="btn btn-primary m-4 btn-block" type="submit">EV. DE
+                                        ORGANIZACION</button>
+
+                                </form>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{{/partial}}
+{{> layout3.html.hbs }}

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Huella de Carbono
+	</title>
+	<link rel="stylesheet" type="text/css" href="css/estilos.css">
+	<link rel="stylesheet" type="text/css" href="css/postulaciones.css">
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<link rel="icon" href="imagenes/icono-principal.png">
+	<meta charset="utf-8">
+	<meta name="keywords" content="CO2, carbono, energia, consumo">
+	<meta name="description" content="Gestión del consumo de energía">
+	<meta name="author" content="DDS2022">
+	<meta name="copyrigth" content= "DDS2022">
+	<meta name="robots" content="index">
+	<meta name="robots" content="follow">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+	<link rel = "preconnect" href = "https://fonts.gstatic.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://kit.fontawesome.com/6bb55b3e99.js" crossorigin="anonymous"></script>
+
+</head>
+	<body>
+		<header id="principio">
+			<div class="encabezado">
+				<a href="/"><img class="logo-inicio" src="imagenes/icono-principal.png"></img></a>
+				<h1>Huella de Carbono</h1>
+				<div class="usuario">
+                    {{#if sesionIniciada}}
+                    <i class="fas  fa-user"></i>
+                   <a href="/logout"><h3 align=center>{{sesionIniciada}}</h3></a>
+                    {{else}}
+					<i class="fas fa-sign-in-alt"></i>
+					<a href="/login"><h3 align=center>Iniciar Sesión</h3></a>
+				    {{/if}}
+				</div>
+			</div>
+			<nav class="menu">
+				<ul class="menu__menu">
+					<li class="menu__menu__li"><i class="fas fa-home"></i>
+						<a href="/"><h3>Inicio</h3></a>
+					</li>
+					<li class="menu__menu__li"><i class="fa-solid fa-plus"></i>
+						<a href="/altaActividad"><h3>Mediciones</h3></a>
+					</li>
+					<li class="menu__menu__li"><i class="fa-solid fa-plus"></i>
+                        <a href="/altaActividad"><h3>Vinculaciones</h3></a>
+                    </li>
+					<li class="menu__menu__li"><i class="fa-solid fa-plus"></i>
+                        <a href="/altaActividad"><h3>Trayectos</h3></a>
+                    </li>
+					<li class="menu__menu__li"><i class="fa-solid fa-person-arrow-up-from-line"></i>
+						<a href="/postulaciones2"><h3>Postulaciones</h3></a>
+					</li>
+					<li class="menu__menu__li"><i class="fa-solid fa-comment"></i>
+						<a href="/recomendaciones"><h3>Recomendaciones</h3></a>
+					</li>
+					<li class="menu__menu__li"><i class="fa-solid fa-calculator"></i>
+						<a href="/hc"><h3>Calculo HC</h3></a>
+					</li>
+					<li class="menu__menu__li"><i class="fa-solid fa-file"></i>
+						<a href="/reportes"><h3>Reportes</h3></a>
+					</li>
+
+				</ul>
+				<ul class="menu__responsive">
+					<div class="menu__responsive-boton-container">
+						<div class="menu__responsive-boton fas fa-bars"></div>
+					</div>
+					<div class="menu__responsive__div">
+						<li class="menu__responsive__div__li"><i class="fas fa-home"></i>
+							<a href="/"><h2>Inicio</h2></a>
+						</li>
+						<li class="menu__responsive__div__li"><i class="fa-solid fa-plus"></i>
+							<a href="/altaActividad"><h2>Mediciones</h2></a>
+						</li>
+						<li class="menu__responsive__div__li"><i class="fa-solid fa-plus"></i>
+							<a href="/altaActividad"><h2>Vinculaciones</h2></a>
+						</li>
+						<li class="menu__responsive__div__li"><i class="fa-solid fa-plus"></i>
+							<a href="/altaActividad"><h2>Trayectos</h2></a>
+						</li>
+						<li class="menu__responsive__div__li"><i class="fa-solid fa-person-arrow-up-from-line"></i>
+							<a href="/postulaciones2"><h2>Postulaciones</h2></a>
+						</li>
+						<li class="menu__responsive__div__li"><i class="fa-solid fa-comment"></i>
+							<a href="/recomendaciones"><h2>Recomendaciones</h2></a>
+						</li>
+						<li class="menu__responsive__div__li"><i class="fa-solid fa-calculator"></i>
+							<a href="/hc"><h2>Calculo HC</h2></a>
+						</li>
+						<li class="menu__responsive__div__li"><i class="fa-solid fa-file"></i>
+							<a href="/reportes"><h2>Reportes</h2></a>
+						</li>
+						<li class="menu__responsive__div__li"><i class="fas fa-sign-in-alt"></i>
+							<a href="/login"><h2>Iniciar Sesión</h2></a>
+						</li>
+					</div>
+				</ul>
+			</nav>
+		</header>
+		<section>
+            {{# block "contenido" }}
+            {{/block}}
+		</section>
+		<footer>
+				<div class="footer">
+					<div class="footer__ubicacion">
+						<img src="imagenes/icono-principal.png" height="50px">
+						<div class="footer__ubicacion__contenido">
+							<h6>Direccion de Prueba 1.234</h6>
+							<h6>Ciudad Autónoma de Bs.As.</h6>
+							<h6>Buenos Aires, Argentina</h6>
+						</div>
+					</div>
+					<div class="footer__contacto">
+						<h5>Contacto:</h5>
+						<div class="footer__contacto__contenido">
+							<h6>Teléfono: 9898-9898</h6>
+							<h6>Móvil: +54 011 6767-6767</h6>
+							<h6>Mail: info@huelladecarbono.com.ar</h6>
+						</div>
+					</div>
+					<div class="footer__redes">
+						<h5>Nuestras Redes:</h5>
+						<div class="footer__redes__contenido">
+							<div>
+								<a href="https://www.facebook.com/" target="_BLANK">
+									<i class="fa-brands fa-square-facebook"></i>
+								</a>
+								<a href="https://www.facebook.com/" target="_BLANK"><h6 class="boton_redes">Facebook</h6></a>
+							</div>
+							<div>
+								<a href="https://www.instagram.com/" target="_BLANK">
+									<i class="fa-brands fa-instagram"></i>
+								</a>
+								<a href="https://www.instagram.com/" target="_BLANK"><h6 class="boton_redes">Instagram</h6></a>
+							</div>
+							<div>
+								<a href="https://www.instagram.com/" target="_BLANK">
+									<i class="fa-brands fa-linkedin"></i>
+								</a>
+								<a href="https://www.Linkedin.com/" target="_BLANK"><h6 class="boton_redes">Linkedin</h6></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			<div class="copyright">
+				<p>Huella de Carbono @Copyrigth - Todos los derechos reservados a DDS2022 Grupo 10</p>
+			</div>
+		</footer>
+	</body>
+</html>

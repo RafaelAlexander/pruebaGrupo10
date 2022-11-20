@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+    http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+
+    <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
+
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+            <class>domain.TransportePublico</class>
+            <class>domain.Estacion</class>
+            <class>domain.Recorrido</class>
+            <class>domain.Linea</class>
+
+            <class>domain.Trayecto</class>
+            <class>domain.Tramo</class>
+
+            <class>domain.Transporte</class>
+            <class>domain.Bicicleta</class>
+            <class>domain.Pie</class>
+            <class>domain.TransporteContratado</class>
+            <class>domain.VehiculoParticular</class>
+            <class>domain.Direccion</class>
+            <class>domain.archivocsv.TipoDeConsumo</class>
+            <class>domain.ServicioContratado</class>
+
+            <class>domain.Miembro</class>
+            <class>domain.Organizacion</class>
+            <class>domain.Sector</class>
+            <class>domain.Postulante</class>
+            <class>domain.HistorialHC</class>
+
+            <class>domain.AgenteSectorial</class>
+            <class>domain.Zona</class>
+
+            <class>domain.Usuario</class>
+            <class>domain.FactorEmision</class>
+
+            <!--Recomendaciones -->
+            <class>domain.recomendaciones.Contacto</class>
+            <class>domain.recomendaciones.MedioDeRecomendacion</class>
+            <class>domain.recomendaciones.MedioWhatsApp</class>
+            <class>domain.recomendaciones.MedioEmail</class>
+
+            <class>domain.recomendaciones.Recomendacion</class>
+
+        <properties>
+            <property name="hibernate.archive.autodetection" value="class"/>
+
+            <!--property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/prueba?serverTimezone=UTC"/>
+            <property name="hibernate.connection.username" value="root" />
+            <property name="hibernate.connection.password" value="adm4130"/-->
+
+            <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver"/>
+            <property name="hibernate.connection.url" value="jdbc:hsqldb:mem:app-db"/>
+            <property name="hibernate.connection.username" value="sa"/>
+            <property name="hibernate.connection.password" value=""/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
+
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="use_sql_comments" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+
+        </properties>
+
+    </persistence-unit>
+
+</persistence>

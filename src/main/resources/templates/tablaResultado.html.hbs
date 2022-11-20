@@ -1,0 +1,83 @@
+{{# partial "contenido" }}
+
+<div class="d-flex flex-column flex-shrink-0 p-5 text-white">
+    <div class="jumbotron p-5 bg-black">
+        <h1>Reportes</h1>
+
+        {{#if zonas}}
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">HC</th>
+                </tr>
+            </thead>
+            {{#each zonas}}
+            <tbody>
+                <tr>
+                    <td>{{nombreProvinciaLocalidad}}</td>
+                    <td>{{hCActual}}</td>
+                </tr>
+            </tbody>
+            {{/each}}
+        </table>
+        {{/if}}
+        {{#if tiposOrgs}}
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">HC</th>
+                </tr>
+            </thead>
+            {{#each tiposOrgs}}
+            <tbody>
+                <tr>
+                    <td>{{name}}</td>
+                    <td>{{hc}}</td>
+                </tr>
+            </tbody>
+            {{/each}}
+        </table>
+        {{/if}}
+
+        {{#if esTercerReporte}}
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">HC Interno</th>
+                    <th scope="col">HC externo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{nombre}}</td>
+                    <td>{{interno}}</td>
+                    <td>{{externo}}</td>
+                </tr>
+            </tbody>
+        </table>
+        {{/if}}
+        {{#if historial}}
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">HC</th>
+                </tr>
+            </thead>
+            {{#each historial}}
+            <tbody>
+                <tr>
+                    <td>{{fechaS}}</td>
+                    <td>{{hcReportado}}</td>
+                </tr>
+            </tbody>
+            {{/each}}
+        </table>
+        {{/if}}
+    </div>
+</div>
+{{/partial}}
+{{> layout3.html.hbs }}

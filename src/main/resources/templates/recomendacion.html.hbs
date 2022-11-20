@@ -1,0 +1,48 @@
+{{# partial "contenido" }}
+<div class="d-flex flex-column flex-shrink-0 p-5 text-white">
+    <div class="jumbotron p-5 bg-black">
+        <h1>Recomendaciones</h1>
+        {{#if esOrg}}
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Link de recomendacion</th>
+                </tr>
+            </thead>
+            {{#each recomendaciones}}
+            <tbody>
+                <tr>
+                    <td><a href="https://{{link}}" class="link-success">{{nombre}}</a></td>
+                </tr>
+            </tbody>
+            {{/each}}
+        </table>
+        {{else}}
+        <table class="table text-white">
+			<thead>
+				<tr>
+					<th scope="col">Recomendacion</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<form action="/recomendaciones" method="post">
+							<p>Complete los siguientes datos:</p>
+							<br>
+							<label for="nombre">Nombre:</label>
+							<input type="text" name="nombre" placeholder="Ej: Google" required>
+							<label for="link">Link:</label>
+							<input type="text" name="link" placeholder="Ej: www.google.com" required>
+							<br><br><input class="btn btn-primary" type="submit" value="Insertar">
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+        {{/if}}
+    </div>
+</div>
+
+{{/partial}}
+{{> layout3.html.hbs }}

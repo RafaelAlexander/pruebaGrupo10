@@ -1,0 +1,459 @@
+class Organizacion{
+  private String razonSocial
+  private TipoOrganizacion tipoOrganizacion
+  private Direccion direccion
+  private List<Sector> sectores
+  private List<Postulante> postulantes
+  private ClasificacionOrganizacion clasificacionOrganizacion
+  private List<DatoActividad> datosActividades
+  private List<Contacto> contactos
+
+  void agregarDatosActividades(DatoActividad datoActividad)
+  aceptarPostulante(Postulante postulante)
+  validarSector(Sector sector)
+  agregarPostulante(Postulante postulante)
+  agregarSectores(List<Sector> sectoresNuevos)
+
+   double getHuellaCarbonoGeneralMensual(int mes, int anio)
+   public double getHuellaCarbonoGeneralAnual(int anio)
+   double getHuellaCarbonoExternaMensual(int mes, int anio)
+   double getHuellaCarbonoExternaAnual(int anio)
+   double getHuellaCarbonoParticularMensual(int mes, int anio)
+   double getHuellaCarbonoParticularAnual(int anio)
+   double getHuellaCarbonoPerCapitaMensual(int mes, int anio)
+   double getHuellaCarbonoPerCapitaAnual(int anio)
+   void mandarMensajesAContactos(String mensaje)
+}
+
+Organizacion --> TipoOrganizacion
+Organizacion --> Direccion
+Organizacion --> Sector
+Organizacion --> Postulante
+Organizacion --> ClasificacionOrganizacion
+Organizacion --> DatoActividad
+Organizacion --> Contacto
+
+enum TipoOrganizacion {
+  GUBERNAMENTAL,
+  ONG,
+  EMPRESA,
+  INSTITUCION
+}
+
+class Direccion {
+ private String provincia;
+ private String localidad;
+ private String calle;
+ private String altura;
+}
+
+class Sector {
+  private String name
+  private List<Miembro> miembros
+  public void agregarMiembro(Miembro miembro)
+  public boolean trabaja(Miembro miembro)
+  public int getCantidadMiembros()
+  public double getHCMensual(int mes, int anio, Organizacion organizacion)
+  public double getHCAnual(int anio, Organizacion organizacion)
+}
+
+class Miembro {
+
+  private String apellido;
+  private String nombre;
+  private TipoDocumento tipoDocumento;
+  private Integer nroDocumento;
+  private Direccion direccionHogar;
+  private List<Trayecto> trayectos;
+  public void compartirTrayecto(Trayecto trayecto)
+  public void agregarTrayecto(Trayecto trayecto)
+  public void postularse(Organizacion organizacion, Sector sector)
+  public double getHCMensual(int mes, int anio, Organizacion organizacion)
+  public double getHCAnual(int anio, Organizacion organizacion)
+  public void agregarContacto(Contacto contacto)
+  public void remove(Contacto contacto)
+}
+
+Miembro-->TipoDocumento
+Miembro-->Direccion
+Miembro --->Trayecto
+
+enum TipoDocumento {
+  DNI,
+  LC,
+  LI
+}
+
+class Direccion {
+  private String provincia
+  private String localidad
+  private String calle
+  private String altura
+}
+
+class Trayecto {
+  private List<Tramo> tramos;
+  private LocalDate localDate;
+  public double calcularDistancia()
+  public double getHC(Organizacion organizacion)
+  public List<Tramo> getTramos()
+  public LocalDate getLocalDate()
+  public boolean esAnio(int anio)
+  public boolean esMes(int mes)
+}
+
+Trayecto-->Tramo
+
+class Tramo {
+  private Organizacion organizacion
+  private Transporte transporte;
+
+  public double calcularDistancia()
+  public double getHC(Organizacion organizacion)
+}
+
+Tramo-->Organizacion
+Tramo-->Transporte
+
+interface Transporte {
+  double calcularDistancia()
+  double getHC()
+}
+
+Transporte<|..Pie
+Transporte<|..Bicicleta
+Transporte<|..TransporteContratado
+Transporte<|..TransportePublico
+Transporte<|..VehiculoParticular
+
+class Pie {
+ private Direccion direccionOrigen
+private Direccion   direccionLlegada
+private TipoDeConsumo tipoDeConsumo
+  public double calcularDistancia()
+  public double getHC()
+}
+Pie..>ServiceLocator
+Pie-->Direccion
+Pie-->TipoDeConsumo
+
+class TipoDeConsumo {
+  private String nombre
+  private Unidad unidad
+  private Actividad actividad
+  private int alcance
+  private FactorEmision factorEmision
+}
+
+TipoDeConsumo --> Unidad
+TipoDeConsumo --> Actividad
+TipoDeConsumo -->FactorEmision
+
+enum Unidad {
+  m3,
+  lt,
+  kg,
+  lts,
+  KWh,
+  nada,
+  km
+}
+
+enum Actividad {
+  CombustiónFija,
+  CombustiónMóvil,
+  ElectricidadAdquiridaYConsumida,
+  LogísticaDeProductosYResiduo
+}
+
+class FactorEmision {
+  private Unidad unidad
+  private float factor
+}
+FactorEmision --> Unidad
+
+class Bicicleta{
+
+  private Direccion direccionOrigen
+  private Direccion direccionLlegada
+  private TipoDeConsumo tipoDeConsumo
+
+  public double calcularDistancia()
+  public double getHC()
+}
+
+Bicicleta-->Direccion
+Bicicleta-->TipoDeConsumo
+Bicicleta..>ServiceLocator
+
+class TransportePublico{
+  private Estacion estacionInicial;
+  private Estacion estacionFinal;
+  private Linea linea;
+  public double calcularDistancia()
+  public double getHC()
+}
+
+TransportePublico-->  Estacion
+TransportePublico-->  Linea
+
+class Estacion {
+  Coordenada coordenada;
+  public double calcularDistancia(Estacion estacion)
+}
+
+Estacion ..>Estacion
+Estacion-->Coordenada
+
+class Coordenada{
+double latitud
+double longitud
+}
+
+class Linea {
+  private TipoLinea tipoLinea;
+  private List<Recorrido> recorridos;
+  private TipoDeConsumo tipoDeConsumo;
+  public Double getDistancia(Estacion estacion1, Estacion estacion2)
+  private Recorrido buscarRecorrido(Estacion estacion1, Estacion estacion2)
+  public double getHC(Estacion estacion1, Estacion estacion2)
+  private Set<Estacion> estacionesEntre(Estacion estacion1, Estacion estacion2)
+}
+
+Linea --> TipoLinea
+Linea --> Recorrido
+Linea --> TipoDeConsumo
+
+enum TipoLinea {
+  FERREA,
+  SUBTERRANEA,
+  COLECTIVO
+}
+
+class Recorrido {
+  List<Estacion> estacionList
+  String nombre
+  public boolean contiene(List<Estacion> estacions)
+}
+
+Recorrido --> Estacion
+
+class TransporteContratado{
+private Direccion direccionInicio, direccionllegada
+private ServicioContratado servicioContratado
+private TipoDeConsumo tipoDeConsumo
+
+  public double calcularDistancia()
+  public double getHC()
+}
+TransporteContratado-->Direccion
+TransporteContratado-->ServicioContratado
+TransporteContratado..>ServiceLocator
+TransporteContratado-->TipoDeConsumo
+
+class VehiculoParticular{
+
+  private Direccion direccionInicio
+  private Direccion direccionLlegada
+  private TipoVehiculo tipoVehiculo
+  private TipoCombustible tipoCombustible
+  private TipoDeConsumo tipoDeConsumo
+
+  public double calcularDistancia()
+  public double getHC()
+}
+VehiculoParticular-->Direccion
+VehiculoParticular-->TipoVehiculo
+VehiculoParticular-->TipoCombustible
+VehiculoParticular-->TipoDeConsumo
+VehiculoParticular..>ServiceLocator
+
+class Postulante {
+  private Miembro miembro
+  private Sector sector
+}
+Postulante --> Miembro
+Postulante --> Sector
+
+enum ClasificacionOrganizacion {
+  MINISTERIO,
+  UNIVERSIDAD,
+  ESCUELA,
+  EMPRESA_SECTOR_PRIMARIO,
+  EMPRESA_SECTOR_SECUNDARIO
+}
+
+class DatoActividad {
+ private TipoDeConsumo tipoDeConsumo
+ private int consumo
+ private int mes
+ private int anual
+ private Periodicidad periodicidad
+
+  public double getHCMensual(int mesActual,int anioActual)
+
+  public double getHCAnual(int anioActual)
+}
+
+DatoActividad --> TipoDeConsumo
+DatoActividad --> Periodicidad
+
+enum Periodicidad {
+  Mensual,
+  Anual
+}
+
+class Contacto {
+
+private String valor
+private MedioDeRecomendacion medioDeRecomendacion
+
+public void enviarRecomendacion(String linkRecomendacion)
+}
+Contacto -->MedioDeRecomendacion
+interface MedioDeRecomendacion{
+void enviarRecomendacion(String valorContacto, String linkRecomendacion)
+}
+
+MedioDeRecomendacion<|..MedioEmail
+MedioDeRecomendacion<|..MedioWhatsApp
+
+class AdministradorUsuarios{
+  private String name
+  private List<Usuario> usuarioList
+  agregarUsuario(Usuario)
+}
+
+AdministradorUsuarios ..>"*" Usuario
+
+Class Usuario {
+String nombre
+String contrasenia
+}
+Class GestionUsuarios {
+}
+Abstract class UsuarioBuilder {
+Usuario usuario
+}
+Class UsuarioAdministrador {
+}
+Class UsuarioEstandar{
+}
+Enum TipoUsuario {
+ADMIN
+ESTANDAR
+}
+Class ValidadorClave {
+void validarClave(String usuario, String clave)
+}
+interface ValidacionClave {
+void validarClave(String usuario, String clave)
+}
+Class ValidadorClaveLargo
+Class ValidadorClaveSecuencia
+Class ValidadorClaveTop10000
+Class ValidadorClaveListaNegra
+
+Miembro -> Usuario
+
+Usuario -> TipoUsuario
+
+ValidadorClave ..>"*" ValidacionClave
+
+UsuarioAdministrador..|> UsuarioBuilder
+UsuarioEstandar..|> UsuarioBuilder
+
+UsuarioBuilder ..> Usuario
+
+GestionUsuarios ..> UsuarioBuilder
+ValidadorClave..> GestionUsuarios
+
+ValidadorClaveListaNegra ..|> ValidacionClave
+ValidadorClaveTop10000 ..|> ValidacionClave
+ValidadorClaveSecuencia ..|> ValidacionClave
+ValidadorClaveLargo..|> ValidacionClave
+
+AdministradorUsuarios-->Usuarios
+EmpresaTransportePrivado->ServicioContratado
+EmpresaTransportePublico-->Linea
+class Organizaciones {
+
+  private final static Organizaciones instance
+  private List<Organizacion> organizacionesList
+  private HashMap<Organizacion, List<Trayecto>> trayectosCompartidos
+  private boolean miembroEstaEnEsteSector (List<Sector> sectores,Miembro miembro)
+  private Organizacion buscarOrganizacionDelMiembro(Miembro miembro)
+  public void agregar(Organizacion organizacion)
+  public List<Organizacion> getOrganizacionesList()
+  public void compartirTrayecto(Trayecto trayecto, Miembro miembro)
+  public List<Trayecto> obtenerTrayectosCompartidos(Organizacion organizacion)
+}
+
+Organizaciones-->Organizacion
+
+class TiposDeConsumo {
+  private List<TipoDeConsumo> tipoDeConsumos
+  private String name;
+
+  public TiposDeConsumo(String name)
+  public void agregarTipoConsumo(TipoDeConsumo tipoDeConsumo)
+ public TipoDeConsumo getTipoConsumo(String nombre)
+}
+TiposDeConsumo -->TipoDeConsumo
+
+class BuilderDatoActividad {
+  private TipoDeConsumo tipoDeConsumo;
+  private int consumo;
+  private int mes;
+  private int anual;
+  private Periodicidad periodicidad;
+  private Organizacion organizacion;
+  private TiposDeConsumo tiposDeConsumo;
+
+  public void lectorCsv(String path) throws Exception
+  private void verificarExisteTipoConsumo(String nombreTipoConsumo)
+  private void verificarConsumo(String consumoEscrito)
+  private void verificarPeriodoDeImputacion(String periodoImputacion)
+  private Integer[] verificar(String periodoImputacion)
+  private static boolean isNumeric(String maybeNumeric)
+  private void agregarPerioricidad(String perioricidadEscrita)
+  private void construir()
+  private void validacion()
+}
+
+BuilderDatoActividad -->TiposDeConsumo
+BuilderDatoActividad -->TipoDeConsumo
+BuilderDatoActividad -->Periodicidad
+BuilderDatoActividad -->Organizacion
+BuilderDatoActividad ..>LectorArchivos
+class Cron {
+  public static void cron()
+}
+Cron..>EnvioRecomendaciones
+EnvioRecomendaciones-->Organizaciones
+class EnvioRecomendaciones{
+  static private String recomendaciones
+  public void execute(JobExecutionContext context) throws JobExecutionException
+  public static void agregarRecomendacion(String recomendacion)
+}
+
+class AgenteSectorial {
+   apellido
+   nombre
+   tipoDocumento
+   nroDocumento
+   direccionHogar
+}
+
+class Zona {
+  nombreProvinciaLocalidad
+}
+
+enum TipoZona {
+  PROVINCIA,
+  LOCALIDAD
+}
+
+AgenteSectorial --> Zona
+Zona --> TipoZona
+

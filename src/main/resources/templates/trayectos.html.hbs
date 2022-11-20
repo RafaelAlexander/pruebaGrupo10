@@ -1,0 +1,125 @@
+{{# partial "contenido" }}
+
+    <div class="d-flex flex-column flex-shrink-0 p-5 text-white">
+
+        <form action="/trayectos/accion" method="post">
+
+        <div class="jumbotron p-5 bg-black">
+            <h1>Trayectos</h1>
+
+            <input type="hidden" id="accionTrayecto"    name="accionTrayecto"/>     <!-- accion a tomar -->
+            <input type="hidden" id="accionTramo"       name="accionTramo"/>        <!-- accion a tomar -->
+            <input type="hidden" id="idTrayecto"        name="idTrayecto"/>         <!-- trayecto para ABM -->
+            <input type="hidden" id="idTramo"           name="idTramo"/>            <!-- tramo para ABM -->
+
+            <p>Su Listado de trayecto es:</p>
+
+            <!-- Tabla de Trayectos -->
+            <table class="table text-white" id="resultado">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Tramos</th>
+                        <th>Fecha</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each trayectos}}
+                    <tr>
+                        <td><input type="text" id="trayecto" name="trayecto" value={{id}}></td>
+                        <td>{{nombre}}</td>
+                        <td>
+
+                            <!-- Tabla de Tramos -->
+                            <table class="table text-white">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Organizacion</th>
+                                        <th>Tipo Transporte</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each tramos}}
+                                    <tr>
+                                        <td><input type="text" id="tramo" name="tramo" value={{id}}></td>
+                                        <td>{{organizacion.razonSocial}}</td>
+                                        <td>poner tipo de transporte</td>
+                                        <td>
+                                            <button class="btn btn-primary" type="submit" onclick="seleccionarAccionTramo('modificar',{{id}})">Modificar</button>
+                                            <button class="btn btn-danger" type="submit" onclick="seleccionarAccionTramo('eliminar',{{id}})">Eliminar</button>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    {{/each}}
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <select name="tipoTransporte" id="tipoTransporte">
+                                                <option value="Pie">Pie</option>
+                                                <option value="Bicicleta">Bicicleta</option>
+                                                <option value="TransporteContratado">Transporte Contratado</option>
+                                                <option value="TransportePublico">Transporte Publico</option>
+                                                <option value="VehiculoParticular">Vehiculo Particular</option>
+                                            </select>
+                                        </td>
+                                        <td></td>
+                                        <td>
+                                            <button class="btn btn-danger" type="submit" onclick="seleccionarAccionTramo('agregar',{{id}})">Agregar</button>
+                                        </td>
+                                    <tr>
+                                </tbody>
+                            </table>
+                            <!-- fin tabla tramos -->
+
+                        </td>
+                        <td>{{fecha}}</td>
+                        <td>
+                            <button class="btn btn-primary" type="submit" onclick="seleccionarAccionTrayecto('modificar',{{id}})">Modificar</button>
+                            <button class="btn btn-danger" type="submit" onclick="seleccionarAccionTrayecto('eliminar',{{id}})">Eliminar</button>
+                        </td>
+                        <td></td>
+                    </tr>
+                {{/each}}
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <button class="btn btn-danger" type="submit" onclick="seleccionarAccionTrayecto('agregar',{{id}})">Agregar</button>
+                    </td>
+                <tr>
+                </tbody>
+            </table>
+
+            <!-- fin tabla trayectos -->
+        </div>
+        </form>
+    </div>
+
+{{/partial}}
+
+    <script>
+
+        function seleccionarAccionTrayecto(accionBotonTrayecto,trayecto) {
+            document.getElementById('accionTrayecto').value = accionBotonTrayecto;
+            document.getElementById('idTrayecto').value = trayecto;
+            alert("La accion es: " + accionBotonTrayecto + " | El trayecto es: " + trayecto);
+        }
+
+        function seleccionarAccionTramo(accionBotonTramo,tramo) {
+            document.getElementById('accionTramo').value = accionBotonTramo;
+            document.getElementById('idTramo').value = tramo;
+            alert("La accion es: " + accionBotonTramo + " | El tramo es: " + tramo);
+        }
+
+    </script>
+
+{{> layout3.html.hbs }}

@@ -1,0 +1,46 @@
+{{# partial "contenido" }}
+
+    <div class="d-flex flex-column flex-shrink-0 p-5 text-white">
+        <div class="jumbotron p-5 bg-black">
+            <h1>Actividades</h1>
+            <p> Listado de actividades de la Organizacion:</p>
+            <table class="table text-white">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Tipo de Consumo</th>
+                    <th scope="col">Consumo</th>
+                    <th scope="col">Unidad</th>
+                    <th scope="col">Actividad</th>
+                    <th scope="col">Mes</th>
+                    <th scope="col">Anual</th>
+                    <th scope="col">Periodicidad</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each actividades}}
+                    <tr>
+                        <th scope="row">{{id}}</th>
+                        <td>{{tipoDeConsumo.nombre}}</td>
+                        <td>{{consumo}}</td>
+                        <td>{{tipoDeConsumo.unidad}}</td>
+                        <td>{{tipoDeConsumo.actividad}}</td>
+                        <td>{{mes.value}}</td>
+                        <td>{{anual}}</td>
+                        <td>{{periodicidad}}</td>
+                        <td>
+                            <form action="actividades/{{id}}" method="post">
+                                <button class="btn btn-primary" type="submit" value="ver">Ver</button>
+                                <button class="btn btn-danger" type="submit" value="borrar">Eliminar</button>
+                            </form>
+                        </td>
+                        </td>
+                    </tr>
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{{/partial}}
+{{> layout3.html.hbs }}

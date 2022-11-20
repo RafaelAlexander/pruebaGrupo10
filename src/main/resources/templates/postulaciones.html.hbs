@@ -1,0 +1,77 @@
+{{# partial "contenido" }}
+		<section>
+			<div class="d-flex flex-column flex-shrink-0 p-5 text-white">
+                <div class="jumbotron p-5 bg-black">
+                    <div class="container-postulacion">
+                        <div class="titulo-postulacion">
+                            <h1>Postulación a una Organización</h1>
+                        </div>
+                        {{#if hayOrganizacionesDisponibles}}
+                        <form action="/postulaciones/nueva" method="post">
+                            <select class="list-organizaciones" name="razonSocial">
+                            {{#each organizacionSector}}
+                                <option>{{razonSocial}} - {{sector}}</option>
+                            {{/each}}
+                            <br><br>
+                            <input class="btn btn-primary" type="submit" value="Postularme">
+                        </form>
+                        {{else}}
+                        <div class="titulo-postulacion">
+                            <h3>No tenes organizaciones disponibles para postularte.</h3>
+                        </div>
+                        {{/if}}
+                    </div>
+                    <div class="separador-section">
+                        <hr>
+                    </div>
+                </div>
+                <div class="d-flex flex-column flex-shrink-0 p-5 text-white"></div>
+                <div class="jumbotron p-5 bg-black">
+                    <h1>Gestión de Postulaciónes</h1>
+                     {{#if noHayPostulaciones}}
+                    <div class="titulo-postulacion">
+                        <h3>No hay postulaciones Pendientes.</h3>
+                    </div>
+                    {{else}}
+                    <table class="table text-white">
+                        <tr>
+                            <th>Sector</th>
+                            <th>Nombre Miembro</th>
+                            <th>Apellido Miembro</th>
+                            <th></th>
+                        </tr>
+                        {{#each postulacionesPendientes}}
+                        <form action="/postulaciones/aceptar" method="post">
+                            <tr>
+                                <td style="display:none"><input type="text" name="idSector" value={{sector.id}} readonly></td>
+                                <td><input type="text" name="sectorName" value={{sector.name}} readonly></td>
+                                <td><input type="text" name="nombreMiembro" value={{miembro.nombre}} readonly></td>
+                                <td><input type="text" name="apellidoMiembro" value={{miembro.apellido}} readonly></td>
+                                <td align="center">
+                                    <div class="boton-aceptar">
+                                        <input class="btn btn-success" type="submit" value="Aceptar">
+                                    </div>
+                                </td>
+                            </tr>
+                        </form>
+                        <form action="/postulaciones/rechazar" method="post">
+                            <tr>
+                                <td style="display:none"><input type="text" name="idSector" value={{sector.id}} readonly></td>
+                                <td><input type="text" name="sectorName" value={{sector.name}} readonly></td>
+                                <td><input type="text" name="nombreMiembro" value={{miembro.nombre}} readonly></td>
+                                <td><input type="text" name="apellidoMiembro" value={{miembro.apellido}} readonly></td>
+                                <td align="center">
+                                    <div class="boton-rechazar">
+                                        <input class="btn btn-danger" type="submit" value="Rechazar">
+                                    </div>
+                                </td>
+                            </tr>
+                        </form>
+                        {{/each}}
+                    </table>
+                    {{/if}}
+                </div>
+            </div>
+		</section>
+{{/partial}}
+{{> layout3.html.hbs }}
