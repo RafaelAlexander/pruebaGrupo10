@@ -1,4 +1,4 @@
-package configweb;
+package configWeb;
 
 import controllers.*;
 
@@ -13,7 +13,7 @@ public class Routes {
 
   public static void main(String[] args) {
 
-    new configweb.Bootstrap().run();
+    //new configWeb.Bootstrap().run();
     Spark.port(9090);
     Spark.staticFileLocation("/public");
 
@@ -48,7 +48,6 @@ public class Routes {
     Spark.get("/organizaciones/:id/actividades",actividadController::obtenerActividades, engine);
     Spark.post("/organizaciones/:id/actividades/:idActividad/borrar",actividadController::borrarActividad, engine);
     Spark.post("/actividades/nueva",actividadController::crearActividad,engine);
-    Spark.post("/error",actividadController::error,engine);
 
     //Rutas:: Calculo de HC
     Spark.get("/hc", calculadoraHCController::getHC, engine);

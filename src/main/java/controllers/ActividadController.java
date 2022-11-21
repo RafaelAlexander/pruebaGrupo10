@@ -20,7 +20,6 @@ public class ActividadController extends BaseController implements WithGlobalEnt
   public ModelAndView obtenerFormularioCreacion(Request request, Response response) {
     Map<String, Object> modelo = new HashMap<>();
     cargarSesion(request,response,modelo);
-
     Organizacion org = Organizaciones.instancia()
         .obtenerOrganizacionPorUsuario(obtenerUsuario(request).getId());
     if (org != null) {
@@ -32,6 +31,7 @@ public class ActividadController extends BaseController implements WithGlobalEnt
   }
 
   private void cargaActividadCSV(Request request, Organizacion organizacion) {
+    if (request.queryParams("csv") == null) return;
     try {
       BuilderDatoActividad builder = new BuilderDatoActividad(organizacion);
       builder.lectorCsv(request.queryParams("csv"));
@@ -54,13 +54,9 @@ public class ActividadController extends BaseController implements WithGlobalEnt
       Organizacion organizacion = Organizaciones.instancia()
           .obtenerOrganizacionPorUsuario(obtenerUsuario(request).getId());
       try {
-        if (request.queryParams("csv") == null) {
-          cargaActividadManual(request,organizacion);
-        } else {
-          cargaActividadCSV(request,organizacion);
-        }
+        cargaActividadManual(request,organizacion);
+        cargaActividadCSV(request,organizacion);
         response.redirect("/organizaciones/" + organizacion.getId() + "/actividades");
-
       } catch (Exception e) {
         response.redirect("/error");
       }

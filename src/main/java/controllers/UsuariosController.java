@@ -22,6 +22,9 @@ import spark.Response;
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class UsuariosController implements WithGlobalEntityManager, EntityManagerOps, TransactionalOps {
 
@@ -70,6 +73,12 @@ public class UsuariosController implements WithGlobalEntityManager, EntityManage
    withTransaction(()->{
      try{
        Usuario usuario = new Usuario();
+       //TODO: Corregir esto en algun momento
+       if ((request.queryParams("rol") == "ADMINISTRADOR")) {
+         usuario.setTipoUsuario(TipoUsuario.ADMINISTRADOR);
+       } else {
+         usuario.setTipoUsuario(TipoUsuario.ESTANDAR);
+       }
        usuario.setTipoUsuario(TipoUsuario.ESTANDAR);
        usuario.setNombreUsuario(request.queryParams("user"));
        usuario.setContrasenia(request.queryParams("password"));
@@ -103,6 +112,9 @@ public class UsuariosController implements WithGlobalEntityManager, EntityManage
   }
 
   public ModelAndView registrarUsuario(Request request, Response response) {
+    Map<String, Object> modelo = new HashMap<>();
+    //TODO: Se debe cambiar la forma de enlistar los roles
+    modelo.put("roles", Arrays.asList("ADMINISTRADOR","ESTANDAR"));
     return new ModelAndView(null,"registrar.html.hbs");
   }
 }

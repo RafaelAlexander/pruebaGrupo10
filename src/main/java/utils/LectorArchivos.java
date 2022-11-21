@@ -1,5 +1,7 @@
 package utils;
 
+import spark.resource.ClassPathResource;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,8 +22,10 @@ public class LectorArchivos {
     return test.exists();
   }
 
-  private InputStreamReader abrirArchivo(String path) throws FileNotFoundException {
-    File file = new File(path).getAbsoluteFile();
+  private InputStreamReader abrirArchivo(String path) throws IOException {
+    ClassPathResource classPathResource = new ClassPathResource("commonCredentials/HuellaBlackList.txt");
+    File file = classPathResource.getFile();
+    //File file = new File(path).getAbsoluteFile();
     return new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8);
   }
 

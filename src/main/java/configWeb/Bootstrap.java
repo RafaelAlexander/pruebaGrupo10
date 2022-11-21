@@ -1,4 +1,4 @@
-package configweb;
+package configWeb;
 
 import domain.*;
 import domain.archivocsv.Actividad;
@@ -71,7 +71,7 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 			Usuario miembro1 = crearUsuario("usuario2", "soyeldos");
 			Usuario miembro2 = crearUsuario("usuario1", "soyeldos1");
 			Usuario usuarioAdministrador = crearUsuarioAdministrador( "usuario", "usuarioAdministrador");
-			crearTipoDeConsumo("Basico", Unidad.m3, Actividad.CombustionFija, 100);
+			crearTipoDeConsumo("Nafta", Unidad.m3, Actividad.CombustionFija, 100);
 			crearTipoDeConsumo("Premium", Unidad.m3, Actividad.CombustionFija, 350);
 			crearTipoDeConsumo("Super", Unidad.m3, Actividad.CombustionFija, 600);
 			Organizacion organizacion = crearOrganizacion(organizacion1,"La Redonda");

@@ -3,6 +3,7 @@
         <div class="jumbotron p-5 bg-black">
 
             <h1>Registrar Usuario</h1>
+            <!--------
                 <form action="/register" method="post">
                 <p>Complete a continuacion, los datos correspondientes para poder registrarse. En caso de pertenerser a una organizacion, procesa a vincularse mediante la postulacion.</p>
                 <input type="text" placeholder="Nombre" name="nombre"><br><br>
@@ -21,6 +22,44 @@
                 <input type="password" placeholder="Password" name="password"><br>
                 <br><input class="btn btn-primary" type="submit" value="crear">
                 </form>
+            ----->
+            <form class="row g-3 needs-validation" action="/register" method="post" novalidate>
+                <div class="col-md-3 position-relative">
+                    <label for="name" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="col-md-3 position-relative">
+                    <label for="subname" class="form-label">Apellido</label>
+                    <input type="text" class="form-control" id="subname" name="subname" required>
+                </div>
+                <div class="col-md-3 position-relative">
+                    <label for="user" class="form-label">Username</label>
+                    <div class="input-group has-validation">
+                        <span class="input-group-text" id="user">@</span>
+                        <input type="text" class="form-control" id="user" aria-describedby="validationTooltipUsernamePrepend" required>
+                    </div>
+                </div>
+                <div class="col-md-3 position-relative">
+                    <label for="validationTooltip04" class="form-label">Rol</label>
+                    <select class="form-select" id="rol" name="rol" required>
+                        {{#each roles}}
+                            <option selected disabled value="">Seleccione</option>
+                            <option>{{roles.this}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="col-md-4 position-relative">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <div class="col-md-4 position-relative">
+                    <label for="repassword" class="form-label">Re-Password</label>
+                    <input type="password" class="form-control" id="repassword" name="repassword" required>
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-primary" type="submit">Enviar</button>
+                </div>
+            </form>
         </div>
     </div>
 {{/partial}}
