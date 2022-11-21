@@ -60,7 +60,7 @@ public class MiembroTest extends AbstractPersistenceTest implements WithGlobalEn
     juan.postularse(techint,techint.getSectores().get(0));
     pedro.postularse(techint,techint.getSectores().get(0));
     techint.aceptarPostulante(techint.getPostulantes().get(0));
-    techint.aceptarPostulante(techint.getPostulantes().get(1));
+    techint.aceptarPostulante(techint.getPostulantes().get(0));
     assertEquals(techint.getSectores().get(0).getMiembros().contains(pedro), true);
     assertEquals(techint.getSectores().get(0).getMiembros().contains(juan), true);
   }

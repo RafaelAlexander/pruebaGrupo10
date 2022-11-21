@@ -1,4 +1,4 @@
-package configWeb;
+package configweb;
 
 import domain.*;
 import domain.archivocsv.Actividad;

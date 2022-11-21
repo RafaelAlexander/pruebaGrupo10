@@ -53,7 +53,7 @@ public class ZonaTest extends AbstractPersistenceTest implements WithGlobalEntit
     miembroTest1.postularse(organizacionTest, organizacionTest.getSectores().get(0));
     miembroTest2.postularse(organizacionTest, organizacionTest.getSectores().get(0));
     organizacionTest.aceptarPostulante(organizacionTest.getPostulantes().get(0));
-    organizacionTest.aceptarPostulante(organizacionTest.getPostulantes().get(1));
+    organizacionTest.aceptarPostulante(organizacionTest.getPostulantes().get(0));
     TiposDeConsumo tiposDeConsumo = TiposDeConsumo.instancia();
     FactorEmision factorEmision = new FactorEmision(Unidad.lt, Float.valueOf("12"));
     FactoresEmision.getInstance().agregarFactorEmision(factorEmision);

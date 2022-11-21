@@ -1,4 +1,4 @@
-package configWeb;
+package configweb;
 
 import controllers.*;
 
@@ -13,7 +13,7 @@ public class Routes {
 
   public static void main(String[] args) {
 
-    new configWeb.Bootstrap().run();
+    new configweb.Bootstrap().run();
     Spark.port(9090);
     Spark.staticFileLocation("/public");
 

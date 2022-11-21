@@ -23,10 +23,10 @@ public class MedioDeRecomendacionTest extends AbstractPersistenceTest implements
     MedioDeRecomendacion medioEmail = new MedioEmail();
     Contacto contactoEmail = new Contacto("merubinho@frba.utn.edu.ar", medioEmail);
   }
-  @Test
+  /*@Test
   public void medioDeRecomendacionWhatsApp() throws EmailException {
     contactoWhatsApp.enviarRecomendacion("compreRamWeb.com");
-  }
+  }*/
 
   @Test
   @Disabled
